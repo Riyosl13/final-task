@@ -1,0 +1,103 @@
+<?php
+use Drupal\node\Entity\Node;  
+use Drupal\webform\Entity\Webform;
+use Drupal\webform\WebformSubmissionForm;
+use Drupal\webform\Entity\WebformSubmission;
+use Drupal\Core\Routing\RouteMatchInterface;
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\RequestException;
+use Drupal\user\Entity\User;
+/**
+ * Implements hook_help().
+ */
+// function riya_help($route_name, RouteMatchInterface $route_match) {
+//   switch ($route_name) {
+//     // Main module help for the riya module.
+//     case 'help.page.riya':
+//       $output = '';
+//       $output .= '<h3>' . t('About') . '</h3>';
+//       $output .= '<p>' . t('My Awesome Module') . '</p>';
+//       return $output;
+
+//     default:
+//   }
+// }
+
+// function riya_node_presave(\Drupal\Core\Entity\EntityInterface $entity) {
+
+  
+//   $query = \Drupal::entityQuery('node')
+//     ->condition('type', 'test')
+//     ->accessCheck(TRUE);
+//   $results = $query->execute();
+//   // end($results));
+//   $node= Node::load(end($results));
+//   $mail=$node->get('field_mail')->value;
+//   $body=$node->get('body')->value;
+
+//     $webform_id = 'test';	// here use can use that webform id where to save data
+//       $webform = Webform::load($webform_id);
+//       // Create webform submission.
+//       $values = [
+//       'webform_id' => $webform->id(),
+//       'data' => [
+//       'body' => $body,
+//       'mail' => $mail,
+//       ],
+//       ];
+  
+//       /** @var \Drupal\webform\WebformSubmissionInterface $webform_submission */
+//       $webform_submission = WebformSubmission::create($values);
+//       $webform_submission->save(); 
+//   // dpm($webform_submission);
+// }
+
+/**
+* Implements hook_cron().
+*/
+function mycron_cron()
+{
+
+      // dd('hello');
+
+  $client = new Client();
+  $node_data = [];
+  
+  try {
+    $response = \Drupal::httpClient()
+    ->get("http://localhost:2001/jsonapi/user/user", [
+  'auth' => ['root', 'Admin@123456'],
+'http_errors' => FALSE,
+  'headers' => [
+    'Content-Type' => 'application/json',
+],
+]);
+$result = json_decode($response->getBody(), TRUE);
+// dd($result['data']);
+foreach($result['data'] as $item) {
+  $user_data['id'] = $item['id']; 
+  $user_data['name'] = $item['attributes']['name']; 
+  $user_data['pass'] = $item['attributes']['pass'];
+  $user_data['mail'] = $item['attributes']['mail']; 
+ 
+
+// $nid= 33;
+//   $uuid_node = Node::load($nid);
+//   $uuid_node->set('field_uuid', $item['id'])->save();
+  
+//   // dd($uuid_node);
+$user= User::create(array(
+  'name' => $user_data['name'],
+  'pass' => $user_data['pass'],
+  'mail' => $user_data['mail'],
+));
+$user->save();
+}
+
+
+// dd($node);
+}
+  catch (RequestException $e) {
+    // log exception
+  }
+}

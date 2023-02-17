@@ -1,0 +1,16 @@
+xai.settings_form:
+  path: 'export'
+  defaults:
+    _form: '\Drupal\xai\Form\SettingsForm'
+    _title: 'SettingsForm'
+  requirements:
+    _permission: 'access administration pages'
+  options:
+    _admin_route: TRUE
+
+xai.exports.articles:
+ path: 'exports'
+ defaults:
+   _controller: '\Drupal\xai\Controller\Hello::build'
+ requirements:
+   _permission: 'administer users'
