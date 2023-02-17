@@ -1,4 +1,4 @@
-name: 'Custom events and subscribers'
+name: 'Custom queue'
 type: module
 description: 'My Awesome Module'
 package: 'riya'

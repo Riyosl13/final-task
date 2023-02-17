@@ -1,0 +1,8 @@
+weather_api.content:
+  path: '/articles/{$nid}'
+  defaults:
+    _controller: '\Drupal\weather_api\Controller\WeatherData::content'
+    _title: 'Current Data'
+  requirements:
+    _permission: 'access content'
+

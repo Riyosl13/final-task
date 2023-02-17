@@ -1,0 +1,5 @@
+drupalbook.displaynode:
+  path: '/get'
+  defaults:
+    _controller: '\Drupal\drupalbook\Controller\DisplayNode::load'
+    _title: 'hello'

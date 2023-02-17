@@ -1,0 +1,5 @@
+book.displaynode:
+  path: '/get'
+  defaults:
+    _controller: '\Drupal\book\Controller\DisplayNode::load'
+    _title: 'hello'

@@ -1,0 +1,5 @@
+name: Student Form
+type: module
+description: Getting students information.
+core_version_requirement: ^8 || ^9
+package: Custom

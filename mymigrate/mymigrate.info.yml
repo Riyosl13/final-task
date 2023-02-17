@@ -1,0 +1,11 @@
+type: module
+name: First Migration
+description: 'Example of basic Drupal migration. Learn more at <a href="https://understanddrupal.com/migrations" title="Drupal Migrations">https://understanddrupal.com/migrations</a>.'
+package: Understand Drupal
+core_version_requirement: ^9 || ^10
+dependencies:
+  - drupal:migrate
+  - migrate_plus:migrate_plus
+
+
+

@@ -1,0 +1,23 @@
+{% for key in response|keys %}
+  {% if (key + 1) % 5 == 1 %}
+  <div class="three"> <div class="card">{{response[key].title}}{{response[key].body}}</div> <div class="card">{{response[key + 1].title}}{{response[key + 1].body}}</div> <div class="card">{{response[key + 2].title}}{{response[key + 1].body}}</div> </div>
+  {% elseif (key + 1) % 5 == 4  %}
+  <div class="two"> <div class="card">{{response[key].title}}{{response[key].body}}</div> <div class="card">{{response[key + 1].title}}{{response[key + 1].body}}</div></div>
+  {% else %}
+  {% endif %}
+{% endfor %}
+<style>
+ .row1, .three{
+ display: grid;
+grid-template-columns: 1fr 1fr 1fr;
+grid-column-gap: 50px;
+}
+ .row2, .two {
+ display: grid;
+grid-template-columns: 1fr 1fr;
+grid-column-gap: 50px;
+}
+.card{
+border: 2px solid red;
+}
+</style>

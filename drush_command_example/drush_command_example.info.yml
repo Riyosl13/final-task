@@ -1,0 +1,5 @@
+name: Drush Command Example
+description: This is our custom drush command.
+core_version_requirement: ^8.8 || ^9
+type: module
+package: ttn

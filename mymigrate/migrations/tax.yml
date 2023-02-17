@@ -1,0 +1,13 @@
+id: football_term
+label: 'Custom term migration'
+source:
+  plugin: csv
+  path: /var/www/html/drupalback/web/sites/default/files/myfile/mytags.csv
+  header_row_count: 1
+  ids: [term_id]
+process:
+  tid: term_id
+  name: name
+destination:
+  plugin: entity:taxonomy_term
+  default_bundle: football_teams

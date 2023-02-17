@@ -1,0 +1,7 @@
+cleanplus.content:
+  path: '/articles'
+  defaults:
+    _controller: '\Drupal\cleanplus\Controller\CleanData::content'
+    _title: 'Curent Data'
+  requirements:
+    _permission: 'access content'

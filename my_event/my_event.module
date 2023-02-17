@@ -6,17 +6,47 @@
  */
 
 use Drupal\Core\Routing\RouteMatchInterface;
-use Drupal\Core\Queue\QueueFactory;
-use Drupal\Core\Queue\QueueInterface;
-use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Datetime\DrupalDateTime;
+use Drupal\my_event\Event\NodeInsertDemoEvent;
+use Drupal\my_event\Event\NodeUpdateDemoEvent;
+use Drupal\my_event\Event\NodeDeleteDemoEvent;
 
 
 /**
- * Cron job to add data to Queue .
+ * Implements hook_help().
  */
-function my_event_presave() {
+function event_subscriber_demo_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the my_event module.
+    case 'help.page.my_event':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Demo of creating and subscribing to events') . '</p>';
+      return $output;
 
+    default:
   }
-   
+}
 
+/**
+ * Implements hook_ENTITY_TYPE_insert().
+ */
+function my_event_node_insert(Drupal\Core\Entity\EntityInterface $entity) {
+  // Dispatch the node insert demo event so that subscribers can act accordingly.
+  \Drupal::service('event_dispatcher')->dispatch(NodeInsertDemoEvent::DEMO_NODE_INSERT, new NodeInsertDemoEvent($entity));
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_update().
+ */
+function my_event_node_update(Drupal\Core\Entity\EntityInterface $entity) {
+    // Dispatch the node insert demo event so that subscribers can act accordingly.
+    \Drupal::service('event_dispatcher')->dispatch(NodeUpdateDemoEvent::DEMO_NODE_UPDATE, new NodeUpdateDemoEvent($entity));
+  }
+
+  /**
+ * Implements hook_ENTITY_TYPE_delete().
+ */
+function my_event_node_delete(Drupal\Core\Entity\EntityInterface $entity) {
+    // Dispatch the node insert demo event so that subscribers can act accordingly.
+    \Drupal::service('event_dispatcher')->dispatch(NodeDeleteDemoEvent::DEMO_NODE_DELETE, new NodeDeleteDemoEvent($entity));
+  }

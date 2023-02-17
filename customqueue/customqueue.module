@@ -1,0 +1,52 @@
+<?php
+
+/**
+ * @file
+ * Contains customqueue.module.
+ */
+use Drupal\Core\entityQuery;
+
+function customqueue_cron(){
+
+    // $storage = \Drupal::entityTypeManager()->getStorage('node');
+    // $query = $storage->getQuery()->condition('type','blog');
+    // $nids = $query->execute();
+    // $node=$storage->loadMultiple($nids);
+    // $image=$node->get('field_blogimg')->getValue();
+    // dd($image);
+  // foreach($image as $images){
+  //     $images->
+  // }
+//     return $image;
+  
+  
+    $arr = array();
+    $query = \Drupal::entityQuery('node')
+    ->condition('type', 'blog')
+    ->condition('status', 1)
+    ->accessCheck(FALSE);
+  $nids = $query->execute();
+//  dd($nids);
+
+$nodes = \Drupal::entityTypeManager()->getStorage('node')->loadMultiple($nids);
+// dd($nodes);
+$imglink;
+foreach ($nodes as $node) {
+  $img=$node->get('field_blogimg')->getValue();
+
+//   dd($img);
+$imglink=$node->get('field_bloglink')->getValue();
+
+
+}
+
+// Get queue.
+$queue = \Drupal::queue('example_queue');
+
+// Add some fake data.
+$item = $imglink;
+
+// Create item to queue.
+$queue->createItem($item);
+}
+

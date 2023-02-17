@@ -1,0 +1,7 @@
+csvupload.content:
+  path: 'import'
+  defaults:
+    _controller: '\Drupal\csvupload\Controller\ImportPage::content'
+    _title: 'Data Import'
+  requirements:
+    _permission: 'access content'

@@ -1,0 +1,20 @@
+services:
+  student_form.about:
+    class: Drupal\student_form\services\About
+    arguments: []
+
+  student_form.document:
+    class: Drupal\student_form\services\Document
+    arguments: []  
+  
+  student_form.education:
+    class: Drupal\student_form\services\Education
+    arguments: []   
+
+  student_form.test:
+    class: Drupal\student_form\services\Test
+    arguments: [] 
+
+  student_form.user:
+    class: Drupal\student_form\services\User
+    arguments: []    

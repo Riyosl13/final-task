@@ -1,0 +1,13 @@
+<?php
+
+/**
+ * @file
+ * Contains .module file.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+function cleanplus_theme($existing, $type, $theme, $path) {
+ 
+    
+  }

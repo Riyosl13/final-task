@@ -1,0 +1,14 @@
+services:
+  my_event.node.insert:
+    class: Drupal\my_event\EventSubscriber\NodeInsertDemoSubscriber
+    tags:
+    - { name: 'event_subscriber' }
+  my_event.node.update:
+    class: Drupal\my_event\EventSubscriber\NodeUpdateDemoSubscriber
+    tags:
+    - { name: 'event_subscriber' }
+
+  my_event.node.delete:
+    class: Drupal\my_event\EventSubscriber\NodeDeleteDemoSubscriber
+    tags:
+    - { name: 'event_subscriber' }

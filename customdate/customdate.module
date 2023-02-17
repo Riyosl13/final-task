@@ -1,0 +1,8 @@
+<?php
+
+function customdate_node_presave(Drupal\node\NodeInterface $entity) {
+    if ($entity->getType() == 'collegeinfo') {
+       $entity->setTitle('Hello');
+       $entity->set('body', 'this is body');
+    } 
+}

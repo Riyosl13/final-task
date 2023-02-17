@@ -1,0 +1,4 @@
+services:
+  plugin.manager.sandwhich:
+    class: Drupal\plugin_type_example\SandwhichPluginManager
+    parent: default_plugin_manager

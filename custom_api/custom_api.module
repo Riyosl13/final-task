@@ -1,0 +1,75 @@
+<?php
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\RequestException;
+
+
+function custom_api_entity_insert(Drupal\Core\Entity\EntityInterface $entity) {
+  // dd($entity);
+$name=$entity->name->value;
+// $body=$entity->body->value;
+$mail=$entity->mail->value;
+$pass=$entity->pass->value;
+
+$uid=$entity->uid->value;
+$config = \Drupal::config('custom_api.settings');
+$base=$config->get('baseurl');
+// dd($base);
+$path=$config->get('path');
+
+$url=$base.$path;
+// dd($url);
+
+try {
+    $response = \Drupal::httpClient()->post($url, [
+        'verify' => false,
+
+      'json' => [
+        'name'=>$name,
+        'pass'=>$pass,
+        'mail'=>$mail,
+        'uid'=>$uid
+      ],
+    ]);
+    $response_data = json_decode($response->getBody()->getContents(), TRUE);
+    // dd($response_data);
+
+    // do something with data
+  }
+catch (RequestException $e) {
+  // log exception
+  // dd('error');
+
+}
+
+}
+
+function custom_api_entity_update(Drupal\Core\Entity\EntityInterface $entity) {
+  // dd($entity);
+$name=$entity->name->value;
+$body=$entity->body->value;
+$mail=$entity->mail->value;
+$uid=$entity->uid->value;
+
+
+$url='http://localhost:2000/api/create';
+try {
+    $response = \Drupal::httpClient()->post($url, [
+        'verify' => false,
+
+      'json' => [
+        'name'=>$name,
+        'pass'=>$pass,
+        'mail'=>$mail,
+        'uid'=>$uid
+      ],
+    ]);
+    $response_data = json_decode($response->getBody()->getContents(), TRUE);
+    // dd($uid);
+
+    // do something with data
+  }
+catch (RequestException $e) {
+  // log exception
+}
+
+}

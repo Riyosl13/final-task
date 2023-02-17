@@ -1,0 +1,5 @@
+name: 'Custom practice'
+type: module
+description: 'My Awesome Module'
+package: 'riya'
+core_version_requirement: ^8.8 || ^9

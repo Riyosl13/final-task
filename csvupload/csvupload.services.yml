@@ -1,0 +1,12 @@
+services:
+  csvupload.validate:
+    class: Drupal\csvupload\services\ValidateData
+    arguments: [] 
+  
+  csvupload.create:
+    class: Drupal\csvupload\services\CreateData
+    arguments: [] 
+
+  csvupload.upload:
+    class: Drupal\csvupload\services\UpdateData
+    arguments: []  
