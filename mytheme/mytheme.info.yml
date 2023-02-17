@@ -1,0 +1,5 @@
+name: mytheme
+type: theme
+description: 'theme based on Bootstrap 5 theme.'
+core_version_requirement: '^9.2 || ^10'
+'base theme': stark

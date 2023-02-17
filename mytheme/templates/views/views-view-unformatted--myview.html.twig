@@ -1,0 +1,91 @@
+{#
+/**
+ * @file
+ * Default theme implementation for main view template.
+ *
+ * Available variables:
+ * - attributes: Remaining HTML attributes for the element.
+ * - css_name: A CSS-safe version of the view name.
+ * - css_class: The user-specified classes names, if any.
+ * - header: The optional header.
+ * - footer: The optional footer.
+ * - rows: The results of the view query, if any.
+ * - empty: The content to display if there are no rows.
+ * - pager: The optional pager next/prev links to display.
+ * - exposed: Exposed widget form/info to display.
+ * - feed_icons: Optional feed icons to display.
+ * - more: An optional link to the next page of results.
+ * - title: Title of the view, only used when displaying in the admin preview.
+ * - title_prefix: Additional output populated by modules, intended to be
+ *   displayed in front of the view title.
+ * - title_suffix: Additional output populated by modules, intended to be
+ *   displayed after the view title.
+ * - attachment_before: An optional attachment view to be displayed before the
+ *   view content.
+ * - attachment_after: An optional attachment view to be displayed after the
+ *   view content.
+ * - dom_id: Unique id for every view being printed to give unique class for
+ *   JavaScript.
+ *
+ * @see template_preprocess_views_view()
+ *
+ * @ingroup themeable
+ */
+#}
+<style>
+.one{
+    display: flex;
+}
+
+.five{
+       display: flex;
+ 
+}
+.three{
+    display: flex;
+}
+.two
+{
+    display: flex;
+}
+.card{
+border: 2px solid red;
+}
+</style>
+
+{# </div>
+{% for key in rows|keys %}
+  {% if (key + 1) % 12 == 1 %}
+  <div class="three"> {{key}}{{rows[key]}} {{key + 1}}{{rows[key + 1]}}  {{key + 2}}{{rows[key + 2]}} </div>
+  {% elseif (key + 1) % 12 == 4 %}
+  <div class="two">{{key}}{{rows[key]}}  {{key + 1}}{{rows[key + 1]}}  </div>
+  {% elseif (key + 1) % 12 == 6 %}
+  <div class="one">{{key}}{{rows[key]}}  </div>
+ {% elseif (key + 1) % 12 == 7 %}
+  <div class="one">{{key}}{{rows[key]}}  </div>
+  {% elseif (key + 1) % 12 == 8 %}
+  <div class="two">{{key}}{{rows[key]}} {{key + 1}}{{rows[key + 1]}}  </div>
+   {% elseif (key + 1) % 12 == 10 %}
+  <div class="three"> {{key}}{{rows[key]}} {{key + 1}}{{rows[key + 1]}}  {{key + 2}}{{rows[key + 2]}} </div>
+  {% else %}
+  {% endif %}
+{% endfor %}
+  </div> #}
+
+
+<div>
+ {% for key in rows|keys %}
+  {% if (key + 1) % 11 == 1 %}
+  <div class="one"><div class="card"> {{key}}{{rows[key]}}  </div></div>
+  {% elseif (key + 1) % 11 == 2 %}
+  <div class="five"> <div class="card">{{key}}{{rows[key]}}</div> <div class="card"> {{key + 1}}{{rows[key + 1]}} </div> <div class="card"> {{key + 2}}{{rows[key + 2]}}</div> <div class="card"> {{key + 3}}{{rows[key + 3]}}  </div><div class="card"> {{key + 4}}{{rows[key + 4]}}</div> </div>
+  {% elseif (key + 1) % 11 == 7 %}
+  <div class="three"><div class="card"> {{key}}{{rows[key]}}</div> <div class="card"> {{key + 1}}{{rows[key + 1]}}</div> <div class="card">  {{key + 2}}{{rows[key + 2]}} </div></div>
+ {% elseif (key + 1) % 11 == 10 %}
+  <div class="two"><div class="card"> {{key}}{{rows[key]}}</div> <div class="card">  {{key + 1}}{{rows[key + 1]}}</div></div>
+ 
+  {% else %}
+  {% endif %}
+{% endfor %} 
+
+  </div>
