@@ -1,5 +1,0 @@
-name: 'mylist'
-type: module
-description: 'My Awesome Module'
-core_version_requirement: ^9 || ^10
-package: 'Custom'
